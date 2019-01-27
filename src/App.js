@@ -44,17 +44,24 @@ class App extends Component {
             onDeleteLastItem={this.deleteLastItem}
             onNoItemsFound={this.noItemsFound()}
           />
-
-          <p className="items">Items</p>
-          <ol className="item-list">
-            {this.state.items.map((item, index) => (
-              <li key={index}>{item}</li>
-            ))}
-          </ol>
+          <ItemList items={this.state.items} />
         </main>
       </div>
     );
   }
 }
 
+function ItemList(props) {
+  const { items } = props;
+  return (
+    <div>
+      <p className="items">Items</p>
+      <ol className="item-list">
+        {items.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ol>
+    </div>
+  );
+}
 export default App;
