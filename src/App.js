@@ -2,18 +2,12 @@ import React, { Component } from "react";
 import "./App.css";
 import AddItem from "./AddItem";
 import DeleteItem from "./DeleteItem";
+import ItemList from "./ItemList";
 
 class App extends Component {
   state = {
     items: []
   };
-
-  // addItem = event => {
-  //   event.preventDefault();
-  //   this.setState(oldState => ({
-  //     items: [...oldState.items, this.state.value]
-  //   }));
-  // };
 
   addItem = item => {
     this.setState(prevState => ({
@@ -51,17 +45,4 @@ class App extends Component {
   }
 }
 
-function ItemList(props) {
-  const { items } = props;
-  return (
-    <div>
-      <p className="items">Items</p>
-      <ol className="item-list">
-        {items.map((item, index) => (
-          <li key={index}>{item}</li>
-        ))}
-      </ol>
-    </div>
-  );
-}
 export default App;
