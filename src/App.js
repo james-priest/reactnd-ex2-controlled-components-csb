@@ -18,6 +18,12 @@ class App extends Component {
     }));
   };
 
+  addItem2 = item => {
+    this.setState(prevState => ({
+      items: [...prevState.items, item]
+    }));
+  };
+
   deleteLastItem = event => {
     this.setState(prevState => ({ items: this.state.items.slice(0, -1) }));
   };
@@ -49,7 +55,7 @@ class App extends Component {
             />
             <button disabled={this.inputIsEmpty()}>Add</button>
           </form>
-
+          <AddItem onAddItem={this.addItem2} />
           <button onClick={this.deleteLastItem} disabled={this.noItemsFound()}>
             Delete Last Item
           </button>
@@ -62,6 +68,36 @@ class App extends Component {
           </ol>
         </main>
       </div>
+    );
+  }
+}
+
+class AddItem extends Component {
+  state = {
+    value: ""
+  };
+  inputIsEmpty = () => {
+    return this.state.value === "";
+  };
+  handleChange = event => {
+    this.setState({ value: event.target.value });
+  };
+  addItem = e => {
+    e.preventDefault();
+    // this.props.onAddItem(e.target.value); // Nope! target is button
+    this.props.onAddItem(this.state.value);
+  };
+  render() {
+    return (
+      <form onSubmit={this.addItem}>
+        <input
+          type="text"
+          placeholder="Enter New Item"
+          value={this.state.value}
+          onChange={this.handleChange}
+        />
+        <button disabled={this.inputIsEmpty()}>Add</button>
+      </form>
     );
   }
 }
