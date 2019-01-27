@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import AddItem from "./AddItem";
+import DeleteItem from "./DeleteItem";
 
 class App extends Component {
   state = {
@@ -54,15 +55,6 @@ class App extends Component {
       </div>
     );
   }
-}
-
-function DeleteItem(props) {
-  const { onDeleteLastItem, onNoItemsFound } = props;
-  return (
-    <button onClick={onDeleteLastItem} disabled={onNoItemsFound}>
-      Delete Last Item
-    </button>
-  );
 }
 
 export default App;
