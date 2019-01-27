@@ -39,9 +39,10 @@ class App extends Component {
         <main className="App-main">
           <h2>Shopping List</h2>
           <AddItem onAddItem={this.addItem} />
-          <button onClick={this.deleteLastItem} disabled={this.noItemsFound()}>
-            Delete Last Item
-          </button>
+          <DeleteItem
+            onDeleteLastItem={this.deleteLastItem}
+            onNoItemsFound={this.noItemsFound()}
+          />
 
           <p className="items">Items</p>
           <ol className="item-list">
@@ -53,6 +54,15 @@ class App extends Component {
       </div>
     );
   }
+}
+
+function DeleteItem(props) {
+  const { onDeleteLastItem, onNoItemsFound } = props;
+  return (
+    <button onClick={onDeleteLastItem} disabled={onNoItemsFound}>
+      Delete Last Item
+    </button>
+  );
 }
 
 export default App;
